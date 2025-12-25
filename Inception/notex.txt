@@ -1,0 +1,53 @@
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js">
+</script><script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+yeah dono files actual mein hai kya 
+
+Yeh dono links basically React ki aatma (soul) hain! Inhe CDN (Content Delivery Network) links kehte hain.
+Jab aap React ko bina kisi install-baaji ke (bina npm ya create-react-app ke) seedhe HTML file mein chalana chahte hain, tab ye do scripts kaam aati hain.
+Dono ka kaam alag-alag hai:
+
+1. React (react.development.js)
+--------------------------------
+Yeh React ki Core Library hai. Iska kaam hai:
+Components banana.
+State aur Props ko manage karna.
+Aapke code ka logic handle karna.
+Iske bina aap React.createElement() jaisi cheezein use nahi kar sakte.
+
+2. React DOM (react-dom.development.js)
+Yeh React aur Browser ke beech ka bridge (pul) hai.
+React ko toh pata hai component kya hota hai, lekin use ye nahi pata ki use HTML page (DOM) par dikhana kaise hai.
+ReactDOM ka kaam hai aapke banaye hue React elements ko uthakar browser ke asli HTML (DOM) mein chipkana (render karna).
+Aap jo root.render() likhte hain, woh isi file ki wajah se chalta hai.
+
+Inhe kyun use karte hain? (As per Akshay Saini's Tutorial)
+-----------------------------------------------------------
+Akshay Saini apne "Inception" (Day 1) episode mein ye dikhate hain ki React koi jaadu nahi hai, balki sirf ek JavaScript library hai.
+Aap inhe apni HTML file ke <head> ya <body> mein dalte hain.
+Iske baad aapko React install karne ki zaroorat nahi padti, browser direct internet se React ko "udhaar" le leta hai.
+Ek Zaroori Baat:
+Aapne jo links likhe hain unme .development.js likha hai. Iska matlab:
+Yeh sirf seekhne (development) ke liye hai.
+Ismein error messages bahut acche se dikhte hain.
+Lekin ye files thodi bhari (heavy) hoti hain. Jab website live jaati hai, toh hum inki jagah .
+production.min.js use karte hain jo fast hoti hain.
+
+
+Heavy" files allowed hain, lekin woh recommended nahi hain. Technical bhasha mein kahein toh ye legal hai par unprofessional hai.
+Iska asli kaaran samajhne ke liye aapko developer ki nazron se dekhna hoga:
+1. Development vs Production Files mein antar
+Jo files aap abhi use kar rahe hain (development.js), unmein extra code hota hai jo aapki madad karta hai:
+Detailed Error Messages: Agar aapne kuch galat kiya, toh console mein saaf-saaf likha aayega ki kya galti hai.
+Comments: File ke andar samjhaya gaya hota hai ki kaunsa function kya kar raha hai.
+Source Maps: Debugging asaan ho jati hai.
+Lekin jab website live jaati hai, toh user ko in error messages ya comments se koi matlab nahi hota. Use chahiye speed.
+
+2. "Heavy" hone ka nuksan kya hai?
+----------------------------------
+
+Agar aap heavy files (Development version) ko live website par dalte hain, toh:
+Slow Loading: User ka browser file download karne mein zyada time lega. Agar internet slow hua, toh website "lag" karegi.
+SEO Par Asar: Google un websites ko upar dikhata hai jo fast load hoti hain.
+User Experience: Agar website 3 second se zyada load hone mein leti hai, toh 40% log use band kar dete hain.
