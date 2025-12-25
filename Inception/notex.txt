@@ -51,3 +51,44 @@ Agar aap heavy files (Development version) ko live website par dalte hain, toh:
 Slow Loading: User ka browser file download karne mein zyada time lega. Agar internet slow hua, toh website "lag" karegi.
 SEO Par Asar: Google un websites ko upar dikhata hai jo fast load hoti hain.
 User Experience: Agar website 3 second se zyada load hone mein leti hai, toh 40% log use band kar dete hain.
+
+Example1:
+---------
+const heading = React.createElement('h1', {id:'heading'}, 'Hello this is my first day with akshay sir')
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(heading)
+
+Example2:
+---------
+<div id= "parent">
+    <div id='child'>
+        <h1>I am an h1 tag</h1>
+    </div>
+</div> 
+
+const parent = React.createElement('div', {id:'parent'},
+    React.createElement('div', {id:'child'},
+        React.createElement('h1', {id:'hedding'}, 'Iam an h1 Tag')
+    )
+)
+
+const root= ReactDOM.createRoot(document.getElementById('root'))
+root.render(parent)
+
+Example:3
+---------
+<div id= "parent">
+    <div id='child'>
+        <h1>I am an h1 tag</h1>
+        <h2>I am an h2 tag</h2>
+    </div>
+</div> 
+
+const parentt = React.createElement('div', {id:'parent'},
+    React.createElement('div', {id:'child'},
+        [React.createElement('h1', {id:'hedding'}, 'Iam an h1 Tag'), React.createElement('h2', {id:'heading'}, 'I am an h2tag')]
+    )
+)
+
+const roott= ReactDOM.createRoot(document.getElementById('root'))
+roott.render(parentt)
