@@ -1,0 +1,20 @@
+{
+  "name": "igniting-the-app",
+  "version": "1.0.0",
+  "description": "Igniting the app",
+  "keywords": [
+    "react",
+    "akshaysaini",
+    "parcel"
+  ],
+  "license": "ISC",
+  "author": "askahy saini",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.3"
+  }
+}

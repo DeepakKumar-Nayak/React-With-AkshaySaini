@@ -1,0 +1,193 @@
+1. What are dependencies
+--------------------------
+"A dependency is an external software package or module that an application requires to function correctly. It is a piece of code written by third-party developers that we import into our project to handle specific tasks, such as state management, UI rendering, or API calls."
+
+"Dependencies are pre-written code modules that our application leverages to perform specific functionalities. Instead of writing everything from scratch, we use these reusable packages to speed up development and ensure stability. These are tracked via a manifest file called package.json."
+
+Lets talk about types of dependencies:
+--------------------------------------
+1.Dependencies(normal dependencies):
+------------------------------------
+Ye wo libraries hain jo aapki website ko chalne (runtime) ke liye har waqt chahiye. Inke bina aapki website live server par crash ho jayegi.
+
+2. Dev Dependencies:
+---------------------
+Ye wo tools hain jo sirf coding aur development ke waqt kaam aate hain. Jab website ban kar tayyar ho jati hai (production build), tab inki zaroorat nahi padti.
+example: vite, parcel
+
+
+how to install dev dependencies:
+--------------------------------
+npm i -D <package-name>
+
+-D :because we want to install it as a dev dependency
+aur apko aur ek bhi chiz dekhne ko milega jaise ki ho gaya carrat(^)
+
+"devDependencies": {
+    "@eslint/js": "^9.25.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "vite": "^6.3.5"
+}
+
+see hame kitna kuch dev dependency mein dekhne ko mil raha hai vite bhi 
+ek dev dependency hi hai and apko ek sign bhi dekhne ko mil raha hai wahan
+pe ji ki hai (^) but carat ko samajhne se pehle  ham thoda version ka format samajh lete hai jaise ki har verson 3 parts mein hota hai : 
+    1. Major 
+    2. Minor
+    3. Patch
+
+aggar apke pass React ka 18.2.0 version hai jo aab abhi use kar rahe ho 
+toh aggar koi update ayye jaise ki ayya 18.2.5 ya phir 18.3.0 
+toh esko ham bolenge Minor and Patch update jo ki carrat(^) mein alow hai 
+woh automatically update kar degaa par aggar koi major atta hai jaise ki 
+React 19.0.0 then nahi hoga autamically update infact update nahi hoga 
+matlab woh purana verion ko uninstall nahi karega .
+
+aur ek hota hai Tilde(~) aggar aapne koi bhi packages ke saath yeah wala 
+sign dekha hoga jaise ki 
+
+~18.2.0
+
+yeah sirf patch update allow karta hai carrat se jyada strict hai major 
+update ko bhi block kar dega aggar ap abhi 18.2.0 use kar rahe ho then 
+18.2.1 allowed hai update ke liye but
+
+18.3.0 allowed nahi hai update le liye 
+19.00 blocked major update toh sawal hi nahi uthta hai 
+
+
+
+
+Note:
+-----
+Aggar aap galti se dependencies ko dev dependencies mein dal dete  ya eska ulta 
+karte ho toh yeah teen bade nuksaan hote hein: 
+
+1. Website ka live hone ruk sakhta hai. 
+2. Bundle seize bhari ho jata hai. 
+3, ci/cd pipelines problem. 
+
+Kaise check karein ki sahi jagah hai ya nahi?
+. Agar library aapke component ke andar import ho rahi hai (e.g., import React from 'react'), toh wo dependencies mein honi chahiye.
+
+.Agar wo library aap terminal mein use kar rahe ho code ko chalane ke liye (e.g., npx parcel index.html), toh wo devDependencies mein honi chahiye.
+
+
+ Notes:
+ ------
+ NPM stands for Node Package Manager. It is the default package manager for Node.js and the world's largest Software Registry."
+
+ Kya aapne kabhi socha hai ki aapne Node.js install kiya aur npm apne aap mil gaya? Ye isliye kyunki NPM, Node.js ke saath hi bundled aata hai.
+
+ Interviewer ka Tricky Question: "Kya NPM sirf Node.js projects ke liye hai?" Jawab: "Nahi sir, NPM kisi bhi JavaScript project ke liye use ho sakta hai, chahe woh Frontend (React, Vue) ho ya Backend (Node, Express)."
+
+ npm init:
+ --------
+ "The npm init command is used to initialize a new or existing npm package. It is an interactive utility that guides you through the creation of a package.json file."
+
+
+It sets up the basic configuration for your project, defining metadata like the project's name, entry point (e.g., index.js), and author. Without this initialization, the project cannot manage external dependencies via NPM."
+
+Example in wasy words:
+-----------------------
+Maan lijiye aapne ek naya folder banaya my-react-app. Abhi wo sirf ek normal folder hai. Jaise hi aap terminal mein npm init chalate ho, NPM aapse kuch sawal puchta hai (Project ka naam? Version? Description?).
+
+In sawalon ke baad, wo aapke folder mein ek package.json file bana deta hai. Jab tak ye file nahi hogi, aap react ya parcel jaisi koi bhi library install nahi kar paoge. Ye file hi hai jo track rakhti hai ki aapne apne project mein kya-kya "udhaar" liya hai.
+
+npm init aggar aap karoge toh apko bahut sare swal puchega jaise ki 
+project name
+version 
+description 
+entry point and etc 
+
+but aggar aap 
+npm init -y 
+
+use karoge toh apse koi sawal nahi puchega aur default settings ke saath apko ek 
+package.json file de dega. -y stands for "Yes"
+
+har dependency ke pass apna khud ka dependency hoga aggar aap yeah soch raha ho ki 
+package.json ek hi hoga folder mein then nahi aisa nahi hota hai har 
+dependency mein jake dekhoge uske pass khudaka apna dependency hoga. 
+
+
+package.json file apko es tarah mil jaega but package.lock.json file 
+apko aise milega hi nahi apko uske liye / matlab aajb aap koi dependency install 
+karoge jaise vite, parcel toh NPM do kam karega 
+
+1. Wo library download karke node_modules mein daalta hai.
+2. Wo turant ek package-lock.json file automatically generate kar deta hai.
+
+package-lock.json file ko agar aap open karoge toh woh package.json se 10-20 
+guna zyada lambi aur complex dikhegi. Ismein har ek dependency 
+ki "Janm Kundli" hoti hai (bascally keep the track of all the version), 
+
+The main components are: 
+
+    1. Version: The exact version of the package installed (no caret or tilde).
+    2. Resolved: The source URL (Registry link) from where the package was fetched.
+    etc etc.
+    3. Integrity : Yeah hame confirm karta hai ki jo bhi mere machine mein hai 
+    is the same one is deployed in the production
+
+
+agggar apne ko bundler install kiya hai for example parcel vite aggar aap 
+package.lock.json mein jaoge apkoo uska actual exact version dekhne ko milega. 
+
+"Kya humein package-lock.json file ko manually edit karna chahiye?"
+Jawab: "Bilkul nahi sir! Ye file npm khud manage karta hai.
+
+Node modules:
+-------------
+Jab bhi ham koi bhi bundler install karte hain hame aur bhi ek chiz milta hai 
+woh hai noode_modules The heaviest object in the universe 
+
+aap koi bhi chiz install karo jaise ki vite ho gaya parcel ho gaya 
+woh install hoke jata hai node_modules ke andar and apne lucide React
+install kiya using npm internet se packages install hoke jate ha node_modules 
+ke andar. 
+
+Aap apne code mein jo import React from 'react' likhte ho, toh computer isi node_modules folder ke andar 
+jaakar React ko dhoondhta hai.
+
+Sabse bada sach: Is folder ko kabhi bhi GitHub par nahi bhejte (upload nahi karte), kyunki ye 
+bahut bhari hota hai aur isse hum package.json ki madad se kabhi bhi wapas generate kar sakte hain.
+
+Transitive Depedency:
+--------------------
+aggar hamne ek Dev Dependency install kiya for exmaple parcel 
+parcel ke paas bhi apna khud ka depency hoga woh bhi kisi ke uper depend hoga esko ham bolte hai 
+Transitive 
+
+Aapne Parcel install kiya (ye aapki Direct Dependency hai). Lekin Parcel ko chalne ke liye 
+Babel chahiye, aur Babel ko chalne ke liye Access-code chahiye.
+kyun ki parcel apne aap khud se sab kcuh nahi kar sakhta usko bhi help chahiye
+
+Aapne toh sirf Parcel manga tha, lekin Parcel apne saath poori "baraat" 
+(uski apni dependencies) lekar aaya. Inhi piche se aane wali libraries ko hum Transitive Dependencies kehte hain.
+
+2. English Mein (Technical Interview Version)
+"A Transitive Dependency occurs when your project depends on Library A, 
+and Library A itself depends on Library B. Even though you didn't explicitly install Library B, 
+it becomes a part of your project's node_modules because Library A cannot function without it."
+
+"NPM manages these transitive dependencies by building a Dependency Tree. It ensures 
+that all the required sub-packages are fetched and stored so that the primary package (like Parcel) works as expected.
+
+How do you check the Transitive Dependency:
+--------------------------------------------
+Aap 3 tareekon se check kar sakte ho:
+
+node_modules folder: Aap dekhoge ki aapne sirf parcel dala tha, 
+lekin folder mein 100 aur folders aa gaye.
+
+package-lock.json: Is file ko khologe toh wahan har package ke niche ek 
+requires ya dependencies ka section hoga. Wohi transitive dependencies hain.
+
+Command: Terminal mein npm list chalao. Ye aapko ek poora tree dikhayega ki kaun kis par depend hai.
