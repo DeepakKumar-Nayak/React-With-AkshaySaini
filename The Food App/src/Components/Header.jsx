@@ -7,26 +7,12 @@ function Header() {
                 <h2>CraveIt</h2>
             </div>
             <div className="nav-right">
-                <li>
-                    <div><i className="ri-search-line"></i></div>
-                    <div><p>CraveIt Corporate</p></div>
-                </li>
-                <li>
-                    <div><i className="ri-refund-2-line"></i></div>
-                    <div><p>Search</p></div>
-                </li>
-                <li>
-                    <div><i className="ri-refund-2-line"></i></div>
-                    <div><p>Offers</p></div>
-                </li>
-                <li>
-                    <div><i className="ri-alipay-line"></i></div>
-                    <div><p>Help</p></div>
-                </li>
-                <li>
-                    <div><i className="ri-shopping-bag-line"></i></div>
-                    <div><p>Cart</p></div>
-                </li>
+                <ul className='list-items'>
+                    <li>Home</li>
+                    <li>About us</li>
+                    <li>Contact Us</li>
+                    <li>Cart</li>
+                </ul>
             </div>
         </div>
     )
