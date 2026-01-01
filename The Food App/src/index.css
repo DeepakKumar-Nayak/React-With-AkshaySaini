@@ -89,15 +89,16 @@ html,body, #root{
 }
 
 .header-data .all-cards::-webkit-scrollbar,
-.fetch-restaurant-data .fetch-restaurant-cards::-webkit-scrollbar {
+.top-restaurant-data .fetch-restaurant-cards::-webkit-scrollbar, 
+.fetch-online-restaurant-cards::-webkit-scrollbar{
   display: none;
 }
 
-.fetch-restaurant-data h4{
+.top-restaurant-data h4{
   margin-bottom: 1rem;
 }
 
-.fetch-restaurant-data .fetch-restaurant-cards {
+.top-restaurant-data .fetch-restaurant-cards {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   overflow-x: auto;
@@ -105,12 +106,12 @@ html,body, #root{
 
 }
 
-.fetch-restaurant-data .fetch-restaurant-cards .res-cards{
+.top-restaurant-data .fetch-restaurant-cards .res-cards{
   width: 280px;
   height: auto;
 
 }
-.fetch-restaurant-data .fetch-restaurant-cards .res-cards .res-image{
+.top-restaurant-data .fetch-restaurant-cards .res-cards .res-image{
   width: 100%;
   height: 200px;
   object-fit: cover;
@@ -119,7 +120,7 @@ html,body, #root{
 
 }
 
-.fetch-restaurant-data .fetch-restaurant-cards .res-cards .item-name{
+.top-restaurant-data .fetch-restaurant-cards .res-cards .item-name{
   font-family: gillroy-bold;
   font-size: 1.1rem;
 }
@@ -167,6 +168,29 @@ html,body, #root{
 .areaname{
   color: grey;
 }
+.fetch-online-restaurant-cards{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-between;
+  overflow-x: auto;
+  gap: 1rem;
+}
+
+
+.online-res-cards{
+  width: 320px;
+  height: auto;
+  
+}
+.online-res-cards .res-image{
+  width:100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 15px;
+}
+
+
 
 
 
