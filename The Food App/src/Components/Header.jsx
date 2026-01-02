@@ -9,9 +9,9 @@ function Header() {
             <div className="nav-right">
                 <ul className='list-items'>
                     <li>Home</li>
-                    <li>About us</li>
-                    <li>Contact Us</li>
-                    <li>Cart</li>
+                    <li className='desktop-only'>About us</li>
+                    <li className='desktop-only'>Contact Us</li>
+                    <li className='desktop-only'>Cart</li>
                 </ul>
             </div>
         </div>

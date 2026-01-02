@@ -30,7 +30,7 @@ html,body, #root{
   src: url('./Fonts/gilroy-bold/Gilroy-Regular.ttf');
 }
 .main{
-  padding: 1rem;
+  padding:  1rem 6rem;
 }
 
 .main h4{
@@ -43,6 +43,7 @@ html,body, #root{
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 }
 
 
@@ -51,14 +52,186 @@ html,body, #root{
   font-size: 3rem;
 
 }
-.nav-right{
-  display: none;
-  gap: 3rem;
-}
 
-.nav-right li{
+
+.list-items{
   list-style-type: none;
-  display: inline-flex;
-  gap: .2rem;
+  display: flex;
+  gap: 2rem;
+
+  font-family: gillroy-medium;
 }
 
+.shimmer-container{
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  height: 90vh;
+  gap: 1rem;
+  position: relative;
+}
+.top-part{
+  height: 30vh;
+  background-color: rgba(130, 130, 130, 0.189);
+  position: relative;
+}
+.bottom-part{
+  flex:1;
+  padding: 1rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-evenly;
+
+}
+.top-part h3{
+  font-family: gillroy-bold; 
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  color:rgb(77, 74, 74);
+}
+
+.bottom-part .cards{
+  width:250px;
+  height: 300px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.044),
+    inset 0 0 20px rgba(255, 255, 255, 0.4);
+  padding: 1rem;
+
+  
+}
+
+
+
+.bottom-part .cards .box{
+  width:100%;
+  height: 120px;
+  background-color: rgba(174, 171, 171, 0.121);
+  border-radius: 1px;
+
+  margin-bottom: 1rem;
+}
+
+.bottom-part .cards h1{
+  width:70%;
+  height: 20px;
+  background-color: rgba(174, 171, 171, 0.121);
+
+  margin-bottom: 1rem;
+}
+.bottom-part .cards h2{
+  width:40%;
+  height: 20px;
+  background-color: rgba(174, 171, 171, 0.121);
+}
+
+.restaurant-cards{
+  width:100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  row-gap: 3rem;
+}
+
+.restaurant-cards .res-cards{
+  width:270px;
+  height: auto;
+  border-radius: 20px;
+  flex-grow: 1;
+  flex-shrink: 0;
+
+}
+
+.restaurant-cards .res-cards img{
+  width:100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+.restaurant-cards .res-cards h2{
+  font-family: gillroy-bold;
+  font-size: 1.2rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; 
+      
+  overflow: hidden;   
+  text-overflow: ellipsis;
+
+}
+.restaurant-cards .res-cards p{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; 
+}
+
+.rating-container{
+  display: flex;
+  gap: .5rem
+}
+
+.rating-container .icon{
+  width:20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+  border-radius: 50%;
+}
+.rating-container .star-icon{
+  color:white;
+}
+.rating-container .time{
+  font-size: 1rem;
+}
+
+
+
+@media(max-width: 450px){
+  .desktop-only{
+    display: none;
+  }
+  .main{
+    padding: 1rem;
+  }
+  .navbar h2{
+    font-size: 2rem;
+  
+  }
+  .bottom-part{
+    width:100%;
+    
+  }
+  .bottom-part .cards{
+    width:100%;
+    height: 300px;
+  }
+  
+}
+
+@media((min-width:451px) and (max-width: 600px)){
+  .desktop-only{
+    display: none;
+  }
+  .main{
+    padding: 2rem;
+  }
+}
+
+
+@media((min-width:601px) and (max-width: 900px)){
+  
+  .main{
+    padding: 2rem;
+  }
+}
