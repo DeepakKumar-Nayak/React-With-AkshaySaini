@@ -57,7 +57,7 @@ function Body() {
                 <div className="filter">
                 <button onClick={() => {
                     const filterData = listOfRestaurants.filter((card) => (
-                        card?.info?.avgRating > 5
+                        card?.info?.avgRating > 4.5
                     ))
                     setFilteredRestaurants(filterData)
 

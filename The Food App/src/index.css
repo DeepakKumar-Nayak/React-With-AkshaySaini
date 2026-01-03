@@ -261,4 +261,17 @@ html,body, #root{
   .main{
     padding: 2rem;
   }
+  .restaurant-cards .res-cards{
+    flex-grow: 0;
+    flex-shrink: 0;
+  
+  }
+}
+
+@media(min-width:901px){
+  .restaurant-cards .res-cards{
+    flex-grow: 0;
+    flex-shrink: 0;
+  
+  }
 }
