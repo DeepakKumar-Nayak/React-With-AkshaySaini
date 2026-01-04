@@ -3,7 +3,7 @@ import { imageUrl } from '../Utils/url'
 
 
 function Retaurants({resData}) {
-  console.log(resData)
+  //console.log(resData)
   const {cloudinaryImageId, name, avgRating, cuisines, sla, areaName} = resData?.info
   return (
    

@@ -3,6 +3,7 @@ import Restaurants from './Restaurants'
 import Shimmer from './Shimmer Components/Shimmer'
 import FilterShimmer from './Shimmer Components/FilterShimmer'
 import { swiggyUrl } from '../Utils/url'
+import { Link } from 'react-router-dom'
 
 
 
@@ -22,7 +23,7 @@ function Body() {
             console.log(json, 'iam from body')
 
             const allCards = json?.data?.cards || json?.data?.success?.cards || []
-            console.log(allCards, 'iam from object')
+            //console.log(allCards, 'iam from object')
 
             const getRestaurantCard = allCards.find((card) => {
                 return card?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -45,37 +46,41 @@ function Body() {
         <div className='body'>
             <div className="filter-section">
                 <div className="search-section">
-                    <input type="text" className="search-input" placeholder='Enter Your Restaurant Name' 
-                    onChange={(e)=>{
-                        const getHotel = listOfRestaurants.filter((card)=>(
-                            card?.info?.name?.toLowerCase().includes(e.target.value)
-                        ))
-                        setFilteredRestaurants(getHotel)
-                    }}
+                    <input type="text" className="search-input" placeholder='Enter Your Restaurant Name'
+                        onChange={(e) => {
+                            const getHotel = listOfRestaurants.filter((card) => (
+                                card?.info?.name?.toLowerCase().includes(e.target.value)
+                            ))
+                            setFilteredRestaurants(getHotel)
+                        }}
                     />
                 </div>
                 <div className="filter">
-                <button onClick={() => {
-                    const filterData = listOfRestaurants.filter((card) => (
-                        card?.info?.avgRating > 4.5
-                    ))
-                    setFilteredRestaurants(filterData)
+                    <button onClick={() => {
+                        const filterData = listOfRestaurants.filter((card) => (
+                            card?.info?.avgRating > 4.5
+                        ))
+                        setFilteredRestaurants(filterData)
 
-                }}>Top Rated Restaurants</button>
+                    }}>Top Rated Restaurants</button>
 
-                <button onClick={() => setFilteredRestaurants(listOfRestaurants)}>
-                    Show All Restaurants
-                </button>
-            </div>
+                    <button onClick={() => setFilteredRestaurants(listOfRestaurants)}>
+                        Show All Restaurants
+                    </button>
+                </div>
             </div>
             {
                 listOfRestaurants?.length === 0 ? (<Shimmer />) :
-                    filteredResturants?.length === 0 ? (<FilterShimmer/>) :
+                    filteredResturants?.length === 0 ? (<FilterShimmer />) :
                         (
                             <div className="restaurant-cards">
                                 {
                                     filteredResturants.map((card) => (
-                                        <Restaurants key={card.info.id} resData={card} />
+                                        <Link
+                                            key={card.info.id}
+                                            to={`/restaurant/${card.info.id}`}>
+                                            <Restaurants resData={card} />
+                                        </Link>
                                     ))
                                 }
                             </div>

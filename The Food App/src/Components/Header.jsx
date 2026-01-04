@@ -1,4 +1,5 @@
 import React, { use, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 function Header() {
@@ -20,9 +21,19 @@ function Header() {
             </div>
             <div className="nav-right">
                 <ul className='list-items'>
-                    <li>Home</li>
-                    <li className='desktop-only'>About us</li>
-                    <li className='desktop-only'>Contact Us</li>
+                    
+                    <li><
+                        Link to="/">Home</Link>
+                    </li>
+
+                    <li className='desktop-only'>
+                        <Link to="/about">About</Link>
+                    </li>
+                    
+                    <li className='desktop-only'>
+                        <Link to="/contact">Contact</Link>
+                    </li>
+
                     <li className='desktop-only'>Cart</li>
                     <li onClick={()=>{
                         userLogin === "Login" ? setUserLogin('Logout') : setUserLogin('Login')

@@ -21,3 +21,33 @@ useEffect(() => {
 useEffect(() => {
     console.log("Main tab chalunga jab userLogin badlega!");
 }, [userLogin]);
+
+What is Server Side Routing and Client Side Routing: 
+----------------------------------------------------
+
+Server Side Routing:
+---------------------
+
+Ye wo tarika hai jo purani websites use karti thi.
+
+Kaise kaam karta hai: Jab tu kisi link par click karta hai (jaise /about), 
+toh browser server ko request bhejta hai. Server poora naya HTML page banata hai aur browser ko wapas bhejta hai.
+
+Browser ka behavior: Poora page refresh hota hai. Ek safed screen (loading) dikhti hai thodi der ke liye.
+
+Nuksan: Ye slow hota hai kyunki har baar server se poora naya page utha kar laana padta hai,
+ bhale hi Header aur Footer wahi rehne waale hon.
+
+Client Side Routing:
+--------------------
+2. Client Side Routing (React wala Naya Tarika)
+Ye wahi hai jo tu react-router-dom se kar raha hai.
+
+Kaise kaam karta hai: Jab tu /about par click karta hai, toh browser server ko request nahi bhejta. 
+React pehle se hi saara code (JavaScript) download kar chuka hota hai.
+
+Browser ka behavior: Page refresh nahi hota. React Router bas purane component 
+(Body) ko hata deta hai aur naye component (About) ko screen par chipka deta hai.
+
+Fayda: Ye super fast hota hai. User ko lagta hi nahi ki page badal gaya, 
+bas content turant change ho jata hai.
