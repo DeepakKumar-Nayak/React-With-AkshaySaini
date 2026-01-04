@@ -1,0 +1,23 @@
+UseEffect:
+----------
+UseEffect is called using two arguments
+    1. callback function 
+    2. dependency array 
+
+UseEffect((callback function)=>{
+
+},[dependency array])
+
+so lets deep dive into it.
+---------------------------
+useEffect(() => {
+    console.log("Main har render pe chalunga! 😭");
+});
+
+useEffect(() => {
+    console.log("Main sirf ek baar chalunga, jab component load hoga!");
+}, []);
+
+useEffect(() => {
+    console.log("Main tab chalunga jab userLogin badlega!");
+}, [userLogin]);
