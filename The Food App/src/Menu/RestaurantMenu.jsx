@@ -8,7 +8,9 @@ function RestaurantMenu() {
   const { resId } = useParams();
   const [resInfo, setResInfo] = useState(null)
   const [resName, setResName] = useState('')
-  const [resinfodata, setResinfoData] = useState()
+  const [resinfodata, setResinfoData] = useState(null)
+  const [toppickTitle, setTopPickTitle] = useState('')
+  const [toppickItems, setTopPickItems] = useState(null)
 
   const fetchMenu = async () => {
     const data = await fetch(
@@ -30,14 +32,23 @@ function RestaurantMenu() {
       card?.card?.card?.info
     ))
 
+    const findGroupCard = allCards.find((card)=>(
+      card?.groupedCard 
+    ))
 
+    const menuCards = findGroupCard?.groupedCard?.cardGroupMap?.REGULAR?.cards || []
 
-
-    console.log(findResInfoCard)
+    const TopPickCard = menuCards.find((card)=>(
+      card?.card?.card?.title === "Top Picks"
+    ))
+    const TopCarouselData = TopPickCard?.card?.card?.carousel
+  
 
     setResInfo(response)
-    setResName(findTextCard?.card?.card?.text)
-    setResinfoData(findResInfoCard?.card?.card?.info)
+    setResName(findTextCard?.card?.card?.text || '')
+    setResinfoData(findResInfoCard?.card?.card?.info || [])
+    setTopPickTitle(TopPickCard?.card?.card?.title || '')
+    setTopPickItems(TopCarouselData || null)
 
 
   }
@@ -55,10 +66,11 @@ function RestaurantMenu() {
               <h5>Order Online</h5>
               <h5>DineOut</h5>
             </div>
+            {/* code for restaurant info */}
             <div className="res-info-card">
 
               <div className="rating-container">
-                <p className='icon'><i className=" star-icon ri-star-s-fill"></i></p>
+                <h4 className='icon'><i className=" star-icon ri-star-s-fill"></i></h4>
                 <h4>{resinfodata.avgRating}</h4>
                 <h4>({resinfodata.totalRatingsString})</h4>
                 <h4>{resinfodata.costForTwoMessage}</h4>
@@ -71,14 +83,27 @@ function RestaurantMenu() {
                   <h5 className="delivery-duration">{resinfodata.sla.slaString}</h5>
                 </div>
               </div>
-              <hr></hr>
-              <div className="image-container">
-                <img src= {`${imageUrl}v1634558776/swiggy_one/OneLogo_3x.png`} alt="free" />
-                <p>Free delivery on orders above ₹199</p>
-              </div>
             </div>
+            
+            {/* code for topPicks */}
+            {toppickItems? (
+              <div className="top-items-container">
+                <hr></hr>
+              <h3 className='top-title'>{toppickTitle}</h3>
+              <div className="carousel-data">
+               {
+                toppickItems.map((card)=>(
+                  <div className="image-container" key = {card.bannerId}>
+                    <img src={imageUrl + card.creativeId} alt= {card.title} />
+                  </div>
+                ))
+               }
+              </div>
+              </div>
+            ) : null}
+            
           </div>
-
+          
 
         )
       }

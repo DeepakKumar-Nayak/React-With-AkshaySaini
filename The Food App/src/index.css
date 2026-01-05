@@ -265,12 +265,13 @@ html,body, #root{
   transition: all 0.9s ease;
 }
 .res-info-card{
+  margin-bottom: 3rem;
   margin-top: 1rem;
   width:100%;
   height: 170px;
   border:1px solid red;
 
-  background: rgba(0, 0, 0, 0.06);
+  background: rgb(255, 255, 255);
 
   border-radius: 18px;
   border: 1px solid rgba(0,0,0,0.08);
@@ -288,12 +289,8 @@ html,body, #root{
 .res-info-card{
   display: flex;
   flex-direction: column;
-  gap: .2rem
-}
-
-.res-info-card .rating-container{
- padding-left: 1rem;
- padding-top: 1rem;
+  gap:.5rem;
+  padding: 1.5rem;
 }
 .res-info-card .rating-container h4{
   font-family: gillroy-medium;
@@ -306,7 +303,6 @@ html,body, #root{
   font-family: gillroy-bold;
   text-underline-offset: 2px;
   font-size: .9rem;
-  padding-left: 1rem;
 }
 
 .outlet-info h5{
@@ -321,22 +317,28 @@ html,body, #root{
 .delivery-time-container{
   margin-bottom: .5rem;
 }
-.image-container{
+
+.top-items-container h3{
+  padding: 3rem 0rem 1rem 0rem;
+  
+}
+.carousel-data{
   display: flex;
-  align-items: center;
-  padding-left: 1rem;
-  gap: .5rem;
-  padding-top: .5rem;
+  gap: 1.5rem;
+  overflow-x: auto;
 }
-.image-container img{
-  width:50px;
-  height: 18px;
+
+.carousel-data .image-container{
+  width: 350px;
+  height: 350px;
+  flex-grow: 1;
+  flex-shrink: 0;
 }
-.image-container p{
-  color:red;
-  font-family: gillroy-medium;
-  font-size: .8rem;
+.carousel-data .image-container img {
+  width:100%;
+  height: 100%;
 }
+
 
 
 @media(max-width: 450px){
