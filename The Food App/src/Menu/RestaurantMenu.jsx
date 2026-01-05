@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { imageUrl } from '../Utils/url';
 import Shimmer from '../Components/Shimmer Components/Shimmer';
+import DisplayMenu from './DisplayMenu';
 
 
 function RestaurantMenu() {
@@ -11,6 +12,7 @@ function RestaurantMenu() {
   const [resinfodata, setResinfoData] = useState(null)
   const [toppickTitle, setTopPickTitle] = useState('')
   const [toppickItems, setTopPickItems] = useState(null)
+  const [allmenuCards, setallMenuCards] = useState([])
 
   const fetchMenu = async () => {
     const data = await fetch(
@@ -37,6 +39,7 @@ function RestaurantMenu() {
     ))
 
     const menuCards = findGroupCard?.groupedCard?.cardGroupMap?.REGULAR?.cards || []
+    //console.log(menuCards)
 
     const TopPickCard = menuCards.find((card)=>(
       card?.card?.card?.title === "Top Picks"
@@ -49,6 +52,7 @@ function RestaurantMenu() {
     setResinfoData(findResInfoCard?.card?.card?.info || [])
     setTopPickTitle(TopPickCard?.card?.card?.title || '')
     setTopPickItems(TopCarouselData || null)
+    setallMenuCards(menuCards)
 
 
   }
@@ -89,7 +93,7 @@ function RestaurantMenu() {
             {toppickItems? (
               <div className="top-items-container">
                 <hr></hr>
-              <h3 className='top-title'>{toppickTitle}</h3>
+              <h2 className='top-title'>{toppickTitle}</h2>
               <div className="carousel-data">
                {
                 toppickItems.map((card)=>(
@@ -101,7 +105,9 @@ function RestaurantMenu() {
               </div>
               </div>
             ) : null}
-            
+
+
+            <DisplayMenu data = {allmenuCards}/>
           </div>
           
 
