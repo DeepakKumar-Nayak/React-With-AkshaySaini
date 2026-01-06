@@ -434,6 +434,24 @@ html,body, #root{
   border-radius: 10px;
 
 }
+.filterbtns button{
+  padding: .5rem 2rem;
+  border:none;
+  font-family: satoshi-bold;
+}
+
+.filterbtns .veg{
+  border:1px solid green;
+  background-color: white;
+}
+.filterbtns .non-veggie{
+  border:1px solid red;
+  background-color: white;
+}
+.filterbtns{
+  display: flex;
+  gap: 1rem;
+}
 .veg-logo{
   border:1px solid green;
   height:18px;
