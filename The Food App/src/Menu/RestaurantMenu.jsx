@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { imageUrl } from '../Utils/url';
+import { imageUrl, menuURL } from '../Utils/url';
 import Shimmer from '../Components/Shimmer Components/Shimmer';
 import DisplayMenu from './DisplayMenu';
 
@@ -16,7 +16,7 @@ function RestaurantMenu() {
 
   const fetchMenu = async () => {
     const data = await fetch(
-      `https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.2832738&lng=77.465927&restaurantId=${resId}&submitAction=ENTER`
+      `${menuURL}${resId}`
     );
     const response = await data.json()
     console.log(response)
@@ -98,7 +98,9 @@ function RestaurantMenu() {
                {
                 toppickItems.map((card)=>(
                   <div className="image-container" key = {card.bannerId}>
-                    <img src={imageUrl + card.creativeId} alt= {card.title} />
+                   
+                    <img src={imageUrl + card.creativeId} alt= {card.title}/>
+                    
                   </div>
                 ))
                }
