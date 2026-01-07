@@ -29,7 +29,7 @@ function DisplayMenu({ data }) {
             <div className="filterbtns">
                 <button className='veg' onClick={() => setFilterBtn('VEG')}>Veg</button>
                 <button className='non-veggie' onClick={() => setFilterBtn('NONVEG')}>Non-Veg</button>
-                <button className='all'onClick={() => setFilterBtn('ALL')}>Show All Items</button>
+                <button className='all' onClick={() => setFilterBtn('ALL')}>Show All Items</button>
             </div>
             {
                 menucards.map((card) => {
@@ -41,56 +41,55 @@ function DisplayMenu({ data }) {
                                 card?.card?.card?.itemCards.filter((item) => {
                                     if (filterBtn === "VEG") {
                                         return item?.card?.info?.itemAttribute?.vegClassifier === "VEG";
-                                    }else if(filterBtn === 'NONVEG'){
+                                    } else if (filterBtn === 'NONVEG') {
                                         return item?.card?.info?.itemAttribute?.vegClassifier === "NONVEG";
-                                    }else if (filterBtn === "ALL") {
+                                    } else if (filterBtn === "ALL") {
                                         return true;
                                     }
                                     return true
                                 }).map((data) => {
+                                    // destructuring the data 
+                                    const { id, name, defaultPrice, price, imageId, description, ratings, itemAttribute } = data?.card?.info || {}
+                                    const { rating, ratingCountV2 } = ratings?.aggregatedRating || {}
+                                    const { vegClassifier } = itemAttribute || {}
+
                                     return (
-                                        <div className="menu-data" key={data?.card?.info?.id
-                                        }>
-                                
+                                        <div className="menu-data" key={id}>
+
                                             <div className="left-data">
                                                 <div className="veg-nonveg-logo">
-                                                    {
-                                                        data?.card?.info?.itemAttribute?.vegClassifier === "NONVEG" ?
-                                                            (
-                                                                <div className="non-veg-logo">
-                                                                    <i class="ri-triangle-fill"></i>
-                                                                </div>
-                                                            ) : (
-                                                                <div className="veg-logo">
-                                                                    <i class="ri-circle-fill"></i>
-                                                                </div>
-                                                            )
-                                
+                                                    {vegClassifier === "NONVEG" ? (
+                                                        <div className="non-veg-logo">
+                                                            <i class="ri-triangle-fill"></i>
+                                                        </div>
+                                                    ) : (
+                                                        <div className="veg-logo">
+                                                            <i class="ri-circle-fill"></i>
+                                                        </div>
+                                                    )
+
                                                     }
                                                 </div>
-                                                <p className='menu-name'>{data?.card?.info?.name}</p>
-                                                <p>₹{(data?.card?.info?.defaultPrice || data?.card?.info?.price) / 100}</p>
-                                                {
-                                                    data?.card?.info?.ratings?.aggregatedRating?.rating ? (
-                                                        <div className="rating-container">
-                                
-                                                            <p><i className=" star-icon ri-star-s-fill"></i></p>
-                                                            <p className='rating'>{data?.card?.info?.ratings?.aggregatedRating?.rating}</p>
-                                                            <p>({data?.card?.info?.ratings?.aggregatedRating?.ratingCountV2})</p>
-                                                        </div>
-                                                    ) : null
+                                                <p className='menu-name'>{name}</p>
+                                                <p>₹{(defaultPrice || price) / 100}</p>
+                                                {rating ? (
+                                                    <div className="rating-container">
+                                                        <p><i className=" star-icon ri-star-s-fill"></i></p>
+                                                        <p className='rating'>{rating}</p>
+                                                        <p>({ratingCountV2})</p>
+                                                    </div>
+                                                ) : null
                                                 }
-                                                <p>{data?.card?.info?.description}</p>
-                                
+                                                <p>{description}</p>
+
                                             </div>
                                             <div className="right-data">
-                                                {
-                                                    data?.card?.info?.imageId ?
-                                                        (<img src={imageUrl + data?.card?.info?.imageId} alt="" />)
-                                                        : (<div className="no-image"></div>)
+                                                {data?.card?.info?.imageId ?
+                                                    (<img src={imageUrl + imageId} alt="" />)
+                                                    : (<div className="no-image"></div>)
                                                 }
-                                
-                                
+
+
                                                 <div className="button-container">
                                                     <button>Add</button>
                                                     <p>Customisable</p>
