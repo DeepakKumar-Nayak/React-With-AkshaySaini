@@ -51,3 +51,117 @@ Browser ka behavior: Page refresh nahi hota. React Router bas purane component
 
 Fayda: Ye super fast hota hai. User ko lagta hi nahi ki page badal gaya, 
 bas content turant change ho jata hai.
+
+
+Notes:
+------
+Sirf Props ke liye: Na constructor chahiye, na props likhna mandatory hai. Aap direct render() ke andar this.props use kar sakte ho.
+State ke liye: constructor aur super(props) dono Mandatory ho jate hain (standard tarike mein).
+
+props ko access karne ke liye aap only this.props likh sakhte ho and it will work perfectly fine. remobve the 
+constructor and super part you will get to see name and email 
+
+haan but jab aap state pe kam karna hai toab apko chahiye hi chahiye tab apko use karna hi padega 
+constructor and props
+
+basic diffrece between both of them is function based component will also return jsx and class based component also 
+but class based component use render to return jsx 
+
+and if you want to work with state then for that you have to use constructor and this
+
+but but one more thing ham sare kam bina constrctor and super ke bhi kar sakhte hain mein apko samjhata hoon 
+purana style mein kya ho raha tha wahan apko constructor and super likhna padta tha kyun ki uske bina ham 
+this access nahi hi nahi paenge yeah ho gaya purana way of writting class based component 
+
+
+wahan apko state ke liye bhi constructor and super likhna padhta tha kyun ki waise bhi apko this use karna 
+padega state ke andar toh constructor and super toh likhna padega hi 
+
+but aaj kal ki naya modern js mien apko state ke liye bhi and props ke liye bhi constructor and super ki jarurat nahi hau
+
+
+ how to use state to update an count value i have written an example but this the old format
+    <button onClick={()=>{
+    this.setState({
+        count: this.state.count+1,
+        count2:this.state.count2+1
+    })
+    }}>Increase Count</button>
+
+
+    this is actualy the old of updating the the value of count now let me tell the the modern way of 
+    changing the value using state no need of writting this.state.count+1 i can directly write like 
+
+    count: count+1 for example: 
+    <button onClick={()=>{
+        this.setState({
+            count: count+1,
+            count2: count2+1
+        })
+    }}>Increase Count</button>
+ 
+
+1. Mounting Phase (Jab component "Paida" hota hai):
+----------------------------------------------------
+Yeh sequence ek hi baar chalta hai jab component screen par pehli baar aata hai:
+constructor(): Sabse pehle memory allocate hoti hai. State aur props initialize hote hain.
+render(): React JSX ko read karta hai aur Virtual DOM banata hai. Is stage par screen par kuch nahi dikhta, sirf memory mein calculation hoti hai.
+React Updates DOM: React ab real browser mein HTML daalta hai.
+componentDidMount(): Jab HTML screen par dikh jata hai, tab yeh method chalta hai.
+Usage: API call karne ke liye ya Timer shuru karne ke liye
+
+2. Updating Phase (Jab State ya Props "Badalte" hain)
+--------------------------------------------------------
+Jab bhi aap this.setState() call karte hain, yeh cycle chalta hai:
+render(): React phir se JSX ko read karta hai taaki pata chale ki kya badla hai.
+Diffing Algorithm: React purane aur naye Virtual DOM ko compare karta hai.
+React Updates DOM: Sirf badla hua hissa screen par update hota hai.
+componentDidUpdate(): Update hone ke baad yeh chalta hai.
+Usage: Agar kisi state change par aapko koi action lena ho (e.g., naye ID ke liye phir se API call karna).
+
+
+Render and Commit Phase(Mounting): 
+----------------------------------
+Render Phase consist of constructor and render.
+Commit phase consist of React Dom Updates and componentDidMount.
+
+in the commit phase It Update the Dom (it actualy find out the diffrence 
+between old virtual dom and new virtual dom aggar hamne koi update kiya 
+for example ek naya p tag ho gaua ki ek naya div tag banaya hai so sab 
+kuch find out karta hai jab usko difference mil jata hai tab woh Update 
+kar deta hai)
+
+
+
+// Some moreextra deep knowledge 
+--------------------------------- 
+Honestly i used to think that componentDidMount is equal to useEffect but thats not true 
+UseEffect componentDidMount behind the scenes does not not componentDidMount both are 
+actually diffrent never compare componentDidMount with useEffect. 
+
+UserEffect(()=>{}) this will be called after each and every render
+UserEffect(()=>{},[]) this will be called once in the initial render. 
+
+componentDidMount is called after first render and after every subsiquent render
+it is updted not mounted. (there is a diffremce between mount update and unMount)
+
+ aggar apko suppose har cont mein useEffect chalana hai ya ek aisa api hai 
+ jisko apko har count mien chala hai uske liye aaj kal useEffect use hota hai 
+ and uske liye code bhi bahut easy hais jaise ji 
+
+ UserEffect(()=>{
+    console.log('call me on count update)
+ },[count]) 
+
+par aggar apko yahi same chiz purane wale older version ke react mein karbna hai toh 
+kaise karna hai kyun ki useEffect toh ho gaya new version ka code abb ham baat karte 
+hai ki kaise ham esko old version ke react mein karte theyyy
+ there is something called componentDidUpdate jab bhi koi update hota 
+ tha ham esko call karte they and uske liye hame jo code likhna padhta tha 
+ woh useEffect se thoda hard hai jaise ki 
+
+ componentDidUpdate(prevProps, prevSate){
+    is(this.state.count !== prevSate.count){
+        
+    }
+ }

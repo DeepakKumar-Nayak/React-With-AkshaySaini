@@ -14,7 +14,12 @@ function RestaurantMenu() {
   const [toppickItems, setTopPickItems] = useState(null)
   const [allmenuCards, setallMenuCards] = useState([])
 
-  const fetchMenu = async () => {
+  useEffect(() => {
+    fetchMenu();
+  }, [])
+
+
+  const fetchMenu = async () => { 
     const data = await fetch(
       `${menuURL}${resId}`
     );
@@ -45,6 +50,7 @@ function RestaurantMenu() {
       card?.card?.card?.title === "Top Picks"
     ))
     const TopCarouselData = TopPickCard?.card?.card?.carousel
+    console.log(TopCarouselData, 'top top')
   
 
     setResInfo(response)
@@ -56,9 +62,6 @@ function RestaurantMenu() {
 
 
   }
-  useEffect(() => {
-    fetchMenu();
-  }, [])
 
   return (
     <div className='res-info'>
