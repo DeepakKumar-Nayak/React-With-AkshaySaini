@@ -1,16 +1,25 @@
-import React, { useEffect, useState } from 'react'
 import Restaurants from './Restaurants'
 import Shimmer from './Shimmer Components/Shimmer'
 import FilterShimmer from './Shimmer Components/FilterShimmer'
 import { Link } from 'react-router-dom'
 import { useAllRestaurants } from '../Utils/useAllRestaurants'
+import { useOnlineStatus } from '../Utils/UseOnlineStatus'
+
 
 
 
 function Body() {
 
-
+    // created a custom hook just to keep it clean otherwise it will look messy
     const { listOfRestaurants, filteredRestaurants, setFilteredRestaurants } = useAllRestaurants()
+
+    const onlineStatus = useOnlineStatus()
+    if(onlineStatus === false){
+        return(
+            <h1 className='status'>Look like you are offline please check your internet connection</h1>
+        )
+    }
+
 
     return (
         <div className='body'>

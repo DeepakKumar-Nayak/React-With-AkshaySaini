@@ -84,7 +84,8 @@ function DisplayMenu({ data }) {
 
                                             </div>
                                             <div className="right-data">
-                                                {data?.card?.info?.imageId ?
+                                                {
+                                                    data?.card?.info?.imageId ?
                                                     (<img src={imageUrl + imageId} alt="" />)
                                                     : (<div className="no-image"></div>)
                                                 }

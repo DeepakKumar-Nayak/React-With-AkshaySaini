@@ -48,6 +48,12 @@ html,body, #root{
   margin: 0 auto;
 }
 
+.status{
+  font-family: gillroy-bold;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
 .main h4{
   font-family: gillroy-bold;
   font-size: 1.3rem;

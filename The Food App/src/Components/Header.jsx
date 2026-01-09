@@ -1,10 +1,13 @@
 import React, { use, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useOnlineStatus } from '../Utils/UseOnlineStatus'
+
 
 
 function Header() {
 
     const [userLogin, setUserLogin] = useState('Login')
+    const onlineStatus = useOnlineStatus()
 
     // function userLogout(){
     //     if(userLogin === 'Login'){
@@ -21,9 +24,11 @@ function Header() {
             </div>
             <div className="nav-right">
                 <ul className='list-items'>
-                    
-                    <li><
-                        Link to="/">Home</Link>
+                    <li>
+                        OnlineStatus: {onlineStatus? "✅" : "🔴"}
+                    </li>
+                    <li>
+                        <Link to="/">Home</Link>
                     </li>
 
                     <li className='desktop-only'>
