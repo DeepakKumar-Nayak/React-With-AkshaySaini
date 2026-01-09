@@ -6,16 +6,22 @@ import About from '../Components/About'
 import App from '../App'
 import ContactUs from "../Components/ContactUs";
 import RestaurantMenu from "../Menu/RestaurantMenu";
+import LandingPage from "../Landingpage/LandingPage";
 
 
 
 const Router = createBrowserRouter([
+
+    {
+        path:"/",
+        element: <LandingPage/>
+    },
     {
         path: '/',
         element: <App/>,
         children: [
             {
-                path: '/',
+                path: '/restaurants',
                 element: <Body />
             },
             {
